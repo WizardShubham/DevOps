@@ -9,10 +9,10 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Debug Secrets (TEMPORARY)
+      - name: Debug secrets
         run: |
-          echo "USERNAME: ${{ secrets.DOCKER_USERNAME }}"
-          echo "LENGTH OF PASSWORD: ${#${{ secrets.DOCKER_PASSWORD }}}"
+          echo "USERNAME=${{ secrets.DOCKER_USERNAME }}"
+          echo "PASSWORD LENGTH=${{ secrets.DOCKER_PASSWORD != '' && secrets.DOCKER_PASSWORD != null && secrets.DOCKER_PASSWORD | size || 'EMPTY' }}"
 
       - name: Checkout code
         uses: actions/checkout@v3
